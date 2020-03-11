@@ -4,18 +4,18 @@
 
 @tailwind utilities;
 
-nav a.active {
+nav.app a.active {
   @apply text-white bg-gray-900;
 }
-/* nav a.active:focus {
+/* nav.app a.active:focus {
   @apply bg-gray-700;
 } */
-nav a:not(.active) {
+nav.app a:not(.active) {
   @apply text-gray-300;
 }
-nav a:hover:not(.active) {
+nav.app a:hover:not(.active) {
   @apply text-white bg-gray-700;
 }
-/* nav a:focus:not(.active) {
+/* nav.app a:focus:not(.active) {
   @apply text-white bg-gray-700;
 } */
