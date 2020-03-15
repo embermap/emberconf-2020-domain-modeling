@@ -1,53 +1,46 @@
 <div class="flex-1 bg-gray-100 border-t border-gray-300">
-  <nav class="p-4">
-    {{#each this.tableNames as |tableName|}}
-      <button
-        class="mr-4 text-sm focus:outline-none
-          {{if
-            (eq tableName this.activeTableName)
-            "text-gray-900"
-            "text-gray-400 hover:text-gray-900"
-          }}"
-        type="button"
-        {{on "click" (fn this.setActiveTableName tableName)}}
-      >
-        {{capitalize tableName}}
-      </button>
-    {{/each}}
-  </nav>
-  <div class="flex flex-col pb-2 overflow-hidden">
-    <div class="py-3 -my-2 overflow-x-auto">
-      <div
-        class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow"
-      >
-        <table class="min-w-full">
-          <thead>
-            <tr>
-              {{#each this.fields as |field|}}
-                <th
-                  class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 border-b border-gray-200 bg-gray-50"
-                >
-                  {{field}}
-                </th>
-              {{/each}}
-            </tr>
-          </thead>
-          <tbody>
-            {{#each this.rows as |row index|}}
-              <tr class="{{if (mod index 2) "bg-gray-50" "bg-white"}}">
-                {{#each row.attrs as |attr index|}}
-                  <td
-                    class="px-6 py-4 text-sm font-medium leading-5 text-gray-900 truncate
-                      {{if (eq index (sub row.attrs.length 1)) "w-full"}}"
+  <Tabs as |t|>
+    <nav class="p-4">
+      {{#each this.tableNames as |tableName|}}
+        <t.Tab @onClick={{fn this.setActiveTableName tableName}}>
+          {{capitalize tableName}}
+        </t.Tab>
+      {{/each}}
+    </nav>
+    <div class="flex flex-col pb-2 overflow-hidden">
+      <div class="py-3 -my-2 overflow-x-auto">
+        <div
+          class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200"
+        >
+          <table class="min-w-full">
+            <thead>
+              <tr>
+                {{#each this.fields as |field|}}
+                  <th
+                    class="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 border-b border-gray-200 bg-gray-50"
                   >
-                    {{attr}}
-                  </td>
+                    {{field}}
+                  </th>
                 {{/each}}
               </tr>
-            {{/each}}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {{#each this.rows as |row index|}}
+                <tr class="{{if (mod index 2) "bg-gray-50" "bg-white"}}">
+                  {{#each row.attrs as |attr index|}}
+                    <td
+                      class="px-4 py-4 text-sm font-medium leading-5 text-gray-900 truncate
+                        {{if (eq index (sub row.attrs.length 1)) "w-full"}}"
+                    >
+                      {{attr}}
+                    </td>
+                  {{/each}}
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
+  </Tabs>
 </div>

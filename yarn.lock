@@ -966,6 +966,14 @@
     ember-cli-babel "^6.16.0"
     ember-compatibility-helpers "^1.1.1"
 
+"@ember/render-modifiers@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@ember/render-modifiers/-/render-modifiers-1.0.2.tgz#2e87c48db49d922ce4850d707215caaac60d8444"
+  integrity sha512-6tEnHl5+62NTSAG2mwhGMFPhUrJQjoVqV+slsn+rlTknm2Zik+iwxBQEbwaiQOU1FUYxkS8RWcieovRNMR8inQ==
+  dependencies:
+    ember-cli-babel "^7.10.0"
+    ember-modifier-manager-polyfill "^1.1.0"
+
 "@ember/test-helpers@^1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-1.7.1.tgz#cc22a954b3b46856518f034bd492a74e0482389f"
@@ -4549,7 +4557,7 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0,
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.11.0, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.17.2, ember-cli-babel@^7.7.3:
+ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.17.2, ember-cli-babel@^7.7.3:
   version "7.18.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.18.0.tgz#e979b73eee00cd93f63452c6170d045e8832f29c"
   integrity sha512-OLPfYD8wSfCrmGHcUf8zEfySSvbAL+5Qp2RWLycJIMaBZhg+SncKj5kVkL3cPJR5n2hVHPdfmKTQIYjOYl6FnQ==
@@ -4764,7 +4772,7 @@ ember-cli-typescript@^2.0.2:
     stagehand "^1.0.0"
     walk-sync "^1.0.0"
 
-ember-cli-typescript@^3.1.3:
+ember-cli-typescript@^3.1.1, ember-cli-typescript@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-3.1.3.tgz#a2c7ec6a8a5e57c38eb52d83e36d8e18c7071e60"
   integrity sha512-bFi15H60L9TLYfn9XUzi+RAP1gTWHFtVdSy9IHvxXHlCvTlFZ+2rfuugr/f8reQLz9gvJccKc5TyRD7v+uhx0Q==
@@ -5001,6 +5009,15 @@ ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
+ember-modifier-manager-polyfill@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-modifier-manager-polyfill/-/ember-modifier-manager-polyfill-1.2.0.tgz#cf4444e11a42ac84f5c8badd85e635df57565dda"
+  integrity sha512-bnaKF1LLKMkBNeDoetvIJ4vhwRPKIIumWr6dbVuW6W6p4QV8ZiO+GdF8J7mxDNlog9CeL9Z/7wam4YS86G8BYA==
+  dependencies:
+    ember-cli-babel "^7.10.0"
+    ember-cli-version-checker "^2.1.2"
+    ember-compatibility-helpers "^1.2.0"
+
 ember-qunit@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-4.6.0.tgz#ad79fd3ff00073a8779400cc5a4b44829517590f"
@@ -5013,6 +5030,14 @@ ember-qunit@^4.6.0:
     ember-cli-babel "^7.12.0"
     ember-cli-test-loader "^2.2.0"
     qunit "^2.9.3"
+
+ember-render-helpers@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ember-render-helpers/-/ember-render-helpers-0.1.1.tgz#616a04d317b4a8a6958432f6af37674ebaecfa3f"
+  integrity sha512-i+6gcWa1hCxI9qGHdacrXjfTUJdR8VCPbOXG8SFNjpqfMFlkh6SNeCMjXgSzRG2Xt7YNSSXEzr0ZvK+C7RUuJw==
+  dependencies:
+    ember-cli-babel "^7.12.0"
+    ember-cli-typescript "^3.1.1"
 
 ember-resolver@^7.0.0:
   version "7.0.0"

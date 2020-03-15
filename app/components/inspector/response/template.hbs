@@ -1,29 +1,39 @@
 <div class="flex flex-col h-full">
-  <div class='p-4 text-sm'>
-    {{!-- <button type='button' class="inline-block px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-800 bg-gray-200 rounded-md focus:outline-none focus:bg-gray-300">
-      JSON
-    </button> --}}
-    <Tabs as |t|>
+  <Tabs as |t|>
+    <div class='p-4 text-sm bg-white shadow'>
       <t.Tab>JSON</t.Tab>
       <t.Tab>Headers</t.Tab>
+    </div>
 
+    <div class="flex-1 overflow-y-scroll {{if (not this.hasResponse) 'flex justify-center items-center'}}">
       <t.Panel>
-        Panel 1
-        {{!-- <div class="flex-1 p-4 overflow-y-scroll">
-          <pre class='mt-4 text-sm'>
+        {{#if this.response}}
+          <pre class='px-4 pt-6 text-xs'>
             {{~this.json}}
           </pre>
-        </div> --}}
+        {{else}}
+          <p class="text-gray-400">Make a request to see response data.</p>
+        {{/if}}
       </t.Panel>
 
       <t.Panel>
-        Panel 2
-        {{!-- <div class="flex-1 p-4 overflow-y-scroll">
-          <pre class='mt-4 text-sm'>
-            {{~this.headers}}
-          </pre>
-        </div> --}}
+        {{#if this.response}}
+          <dl class='mt-8 bg-white'>
+            {{#each-in this.headers as |header value|}}
+              <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-4">
+                <dt class="text-sm font-medium leading-5 text-gray-500">
+                  {{header}}
+                </dt>
+                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                  {{value}}
+                </dd>
+              </div>
+            {{/each-in}}
+          </dl>
+        {{else}}
+          <p class="text-gray-400">Make a request to see response data.</p>
+        {{/if}}
       </t.Panel>
-    </Tabs>
-  </div>
+    </div>
+  </Tabs>
 </div>
