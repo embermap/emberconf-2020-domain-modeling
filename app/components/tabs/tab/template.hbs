@@ -1,0 +1,9 @@
+<button
+  class="mr-4 text-sm focus:outline-none
+    {{if this.isActive "text-gray-900" "text-gray-400 hover:text-gray-900"}}
+  "
+  type="button"
+  {{!-- {{on "click" (fn this.setActiveTableName tableName)}} --}}
+>
+  {{yield}}
+</button>

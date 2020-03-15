@@ -1,0 +1,57 @@
+<div class="flex-1 p-4 bg-gray-100 border-t border-gray-300">
+  <div>
+    <form {{on "submit" (fn this.makeRequest)}}>
+      <label for="endpoint" class="sr-only">
+        Endpoint
+      </label>
+      <div class="flex mt-1 rounded-md shadow-sm">
+        <div class="relative flex-grow focus-within:z-10">
+          <div class="absolute inset-y-0 left-0 flex items-center">
+            <select
+              aria-label="Method"
+              class="h-full py-0 pl-3 text-gray-500 bg-transparent border-transparent form-select pr-7 sm:text-sm sm:leading-5"
+            >
+              <option>
+                GET
+              </option>
+              <option>
+                POST
+              </option>
+              <option>
+                PUT
+              </option>
+              <option>
+                PATCH
+              </option>
+              <option>
+                DELETE
+              </option>
+            </select>
+          </div>
+          <Input
+            @value={{this.endpoint}}
+            id="endpoint"
+            class="block w-full pl-24 transition duration-150 ease-in-out rounded-none form-input rounded-l-md sm:text-sm sm:leading-5"
+            placeholder="/api/users"
+          />
+        </div>
+        <button
+          type="submit"
+          class="relative inline-flex items-center px-3 py-2 -ml-px text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out border border-gray-300 rounded-r-md bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            fill="none"
+            class="w-5 h-5 text-gray-400"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.4945 10.9288L6.54117 15.8508C5.86621 16.2681 5 15.7628 5 14.9216V5.07765C5 4.23776 5.86496 3.73117 6.54117 4.14978L14.4945 9.07175C14.6481 9.16524 14.7757 9.30037 14.8645 9.46344C14.9532 9.62651 15 9.81172 15 10.0003C15 10.1889 14.9532 10.3741 14.8645 10.5371C14.7757 10.7002 14.6481 10.8353 14.4945 10.9288V10.9288Z"
+              fill="#76889A"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

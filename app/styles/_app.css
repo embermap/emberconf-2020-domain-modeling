@@ -1,0 +1,21 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+nav.app a.active {
+  @apply text-white bg-gray-900;
+}
+/* nav.app a.active:focus {
+  @apply bg-gray-700;
+} */
+nav.app a:not(.active) {
+  @apply text-gray-300;
+}
+nav.app a:hover:not(.active) {
+  @apply text-white bg-gray-700;
+}
+/* nav.app a:focus:not(.active) {
+  @apply text-white bg-gray-700;
+} */
