@@ -5,10 +5,17 @@ import { action } from "@ember/object";
 export default class extends Component {
   @tracked method = "GET";
   @tracked endpoint = "/api/messages";
+  @tracked error;
 
   @action
   updateMethod(e) {
     this.method = e.target.value;
+  }
+
+  @action
+  handleInput(e) {
+    this.endpoint = e.target.value;
+    this.error = null;
   }
 
   @action
@@ -18,6 +25,12 @@ export default class extends Component {
     fetch(this.endpoint, {
       method: this.method,
       body: this.requestBody
-    });
+    })
+      .then(() => {
+        this.error = null;
+      })
+      .catch(e => {
+        this.error = `Your Mirage server has no handler for a ${this.method} request to "${this.endpoint}".`;
+      });
   }
 }

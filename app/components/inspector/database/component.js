@@ -3,7 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
 export default class extends Component {
-  @tracked activeTableName = this.tableNames[0];
+  @tracked activeTableName = this.tableNames ? this.tableNames[0] : null;
 
   @action
   setActiveTableName(tableName) {
