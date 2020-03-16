@@ -10,20 +10,21 @@
             <select
               aria-label="Method"
               class="h-full py-0 pl-3 text-gray-500 bg-transparent border-transparent form-select pr-7 sm:text-sm sm:leading-5"
+              {{on 'change' this.updateMethod}}
             >
-              <option>
+              <option value='GET' selected>
                 GET
               </option>
-              <option>
+              <option value='POST'>
                 POST
               </option>
-              <option>
+              <option value='PUT'>
                 PUT
               </option>
-              <option>
+              <option value='PATCH'>
                 PATCH
               </option>
-              <option>
+              <option value='DELETE'>
                 DELETE
               </option>
             </select>
@@ -52,6 +53,13 @@
           </svg>
         </button>
       </div>
+
+      {{#if (not-eq this.method 'GET')}}
+        <p class="mt-6 text-sm text-gray-500">Request body</p>
+        <div class="flex max-w-lg mt-2 rounded-md shadow-sm">
+          <Textarea @value={{this.requestBody}} id="about" rows="4" class="block w-full transition duration-150 ease-in-out form-textarea sm:text-sm sm:leading-5" />
+        </div>
+      {{/if}}
     </form>
   </div>
 </div>
