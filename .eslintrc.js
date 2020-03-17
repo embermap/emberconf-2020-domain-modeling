@@ -15,7 +15,9 @@ module.exports = {
   },
   rules: {
     "ember/no-jquery": "error",
-    "no-unused-vars": ["error", { args: "none" }]
+    "no-unused-vars": ["error", { args: "none" }],
+    "no-console": "off",
+    "ember/avoid-leaking-state-in-ember-objects": "off"
   },
   overrides: [
     // node files

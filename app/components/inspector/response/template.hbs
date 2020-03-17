@@ -1,3 +1,5 @@
+{{did-update this.handleIsRequestingChange @isRequesting}}
+
 <div class="flex flex-col h-full overflow-hidden">
   <Tabs as |t|>
     <div class='flex px-4 py-3 text-sm bg-white shadow'>
@@ -11,12 +13,14 @@
 
     </div>
 
-    <div class="flex-1 overflow-y-scroll {{if (not this.hasResponse) 'flex justify-center items-center'}}">
+    <div class="flex-1 overflow-y-scroll {{if (and (not this.hasResponse) (not @isRequesting)) 'flex justify-center items-center'}}">
       <t.Panel>
         {{#if this.response}}
           <pre class='px-4 pt-6 text-xs'>
             {{~this.json}}
           </pre>
+        {{else if @isRequesting}}
+          <p class="p-4 text-sm text-gray-400">Requesting...</p>
         {{else}}
           <p class="text-gray-400">Make a request to see response data.</p>
         {{/if}}
@@ -36,6 +40,8 @@
               </div>
             {{/each-in}}
           </dl>
+        {{else if @isRequesting}}
+          <p class="p-4 text-sm text-gray-400">Requesting...</p>
         {{else}}
           <p class="text-gray-400">Make a request to see response data.</p>
         {{/if}}

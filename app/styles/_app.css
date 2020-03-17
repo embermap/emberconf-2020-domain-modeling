@@ -22,3 +22,11 @@ nav.app a:hover:not(.active) {
 pre[class*="language-"] {
   @apply p-0 m-0 mt-2 text-xs bg-transparent;
 }
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  @apply bg-transparent;
+}

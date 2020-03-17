@@ -1,6 +1,6 @@
 <div class="flex flex-col flex-1 bg-gray-100 border-t border-gray-300">
   <div class='p-4'>
-    <form {{on "submit" (fn this.makeRequest)}}>
+    <form {{on "submit" this.handleSubmit}}>
       <label for="endpoint" class="sr-only">
         Endpoint
       </label>
@@ -59,7 +59,7 @@
       {{#if (not-eq this.method 'GET')}}
         <p class="mt-6 text-sm text-gray-500">Request body</p>
         <div class="flex mt-2 rounded-md shadow-sm">
-          <Textarea @value={{this.requestBody}} id="about" rows="4" class="block w-full transition duration-150 ease-in-out form-textarea sm:text-sm sm:leading-5" />
+          <Textarea @value={{this.requestBody}} {{on 'keydown' this.handleTextareaKeydown}} id="about" rows="4" class="block w-full transition duration-150 ease-in-out form-textarea sm:text-sm sm:leading-5" />
         </div>
       {{/if}}
 

@@ -46,10 +46,10 @@
           </p>
         </div>
         <nav class="px-2 mt-5 app">
-          {{#each this.links as |link|}}
+          {{#each (range 1 this.exercisesCount true) as |exerciseNumber|}}
             <LinkTo 
               @route="exercise"
-              @model={{link.model}}
+              @model={{concat 'exercise-' exerciseNumber}}
               {{on 'click' this.toggleSidebarIsOpen}}
               class="flex items-center px-2 py-2 mt-1 text-base font-medium leading-6 text-white transition duration-150 ease-in-out rounded-md group focus:outline-none"
             >
@@ -66,7 +66,7 @@
                   d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"
                 ></path>
               </svg>
-              {{link.label}}
+              Exercise {{exerciseNumber}}
             </LinkTo>
           {{/each}}
         </nav>

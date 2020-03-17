@@ -14,6 +14,7 @@ export default class extends Route {
     let exerciseIndex = exerciseNumber - 1;
 
     let server = exercises[exerciseIndex]();
+    server.timing = 250;
     window.server = server;
     return {
       server,

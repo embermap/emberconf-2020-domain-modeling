@@ -10,16 +10,12 @@ export default class extends Component {
     this.activeTableName = tableName;
   }
 
-  get db() {
-    return this.args.server.db.dump();
-  }
-
   get tableNames() {
-    return Object.keys(this.db);
+    return Object.keys(this.args.db);
   }
 
   get records() {
-    return this.db[this.activeTableName];
+    return this.args.db[this.activeTableName];
   }
 
   get fields() {

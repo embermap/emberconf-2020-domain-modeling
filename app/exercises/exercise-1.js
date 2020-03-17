@@ -1,3 +1,4 @@
+// Exercise 1: Basic
 import { Server } from "miragejs";
 
 export default function makeServer() {

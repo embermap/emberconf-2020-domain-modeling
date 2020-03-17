@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-// import { action } from "@ember/object";
+import { action } from "@ember/object";
 
 export default class extends Component {
   @tracked response;
@@ -14,6 +14,7 @@ export default class extends Component {
 
     this.args.server.pretender.handledRequest = (verb, path, request) => {
       originalHandler(verb, path, request);
+      this.args.onHandle();
 
       this.response = {
         code: request.status,
@@ -23,8 +24,18 @@ export default class extends Component {
     };
   }
 
+  @action
+  handleIsRequestingChange() {
+    if (this.args.isRequesting === true) {
+      this.response = null;
+    }
+  }
+
   get json() {
-    return JSON.stringify(JSON.parse(this.response.responseText), null, 2);
+    let responseText = this.response.responseText;
+    return responseText
+      ? JSON.stringify(JSON.parse(responseText), null, 2)
+      : null;
   }
 
   get headers() {

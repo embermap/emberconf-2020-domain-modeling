@@ -16,7 +16,7 @@
         <Inspector::ConfigViewer @exerciseSlug={{@exerciseSlug}} />
       </t.Panel>
       <t.Panel>
-        <Inspector::Database @server={{@server}} />
+        <Inspector::Database @db={{this.db}} />
       </t.Panel>
     </div>
   </Tabs>
@@ -33,9 +33,14 @@
         </div>
       </Tabs>
     </div>
-    <Inspector::Request @server={{@server}} />
+    <Inspector::Request @server={{@server}}
+      @onRequest={{this.handleRequest}}
+      @onError={{this.handleError}}
+    />
   </div>
   <div class="bg-gray-100 h-1/2">
-    <Inspector::Response @server={{@server}} />
+    <Inspector::Response @server={{@server}}
+      @isRequesting={{this.isRequesting}}
+      @onHandle={{this.handleResponse}} />
   </div>
 </div>

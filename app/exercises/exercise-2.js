@@ -1,37 +1,39 @@
-import { Server, Model, belongsTo, hasMany } from "miragejs";
+// Exercise 2: CRUD
+import { Server, Model, RestSerializer } from "miragejs";
 
 export default function makeServer() {
   return new Server({
+    serializers: { application: RestSerializer },
+
     models: {
-      user: Model.extend({
-        messages: hasMany()
-      }),
-      message: Model.extend({
-        user: belongsTo()
-      })
+      user: Model
     },
 
     seeds(server) {
-      let sam = server.create("user", { name: "Sam" });
-      let ryan = server.create("user", { name: "Ryan" });
-
-      sam.createMessage({ text: "hey!" });
-      ryan.createMessage({ text: "hey man" });
-      ryan.createMessage({ text: "hows #coronaconf2020 going?" });
-      sam.createMessage({
-        text: "I managed to buy groceries but somehow all I'm eating is candy"
-      });
+      server.create("user", { name: "Sam" });
     },
 
     routes() {
-      this.get("/movies", () => {
-        return {
-          movies: [
-            { id: 1, name: "Inception", year: 2010 },
-            { id: 2, name: "Interstellar", year: 2014 },
-            { id: 3, name: "Dunkirk", year: 2017 }
-          ]
-        };
+      this.get("/users", (schema, request) => {
+        return schema.users.all();
+      });
+
+      this.get("/users/:id", (schema, request) => {
+        return schema.users.find(request.params.id);
+      });
+
+      this.post("/users", function(schema, request) {
+        return schema.users.create(this.normalizedRequestAttrs());
+      });
+
+      this.patch("/users/:id", function(schema, request) {
+        let user = schema.users.find(request.params.id);
+
+        return user.update(this.normalizedRequestAttrs());
+      });
+
+      this.delete("/users/:id", function(schema, request) {
+        schema.users.find(request.params.id).destroy();
       });
     }
   });

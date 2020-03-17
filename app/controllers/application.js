@@ -8,11 +8,7 @@ export default class ApplicationController extends Controller {
   @service router;
   @tracked sidebarIsOpen;
 
-  links = [
-    { label: "Exercise 1", model: "exercise-1" },
-    { label: "Exercise 2", model: "exercise-2" },
-    { label: "Exercise 3", model: "exercise-3" }
-  ];
+  exercisesCount = exercises.length;
 
   get currentExercise() {
     let slug = this.router.currentRoute.params.exercise_slug;

@@ -29062,6 +29062,14 @@ pre[class*="language-"] {
   background-color: transparent;
 }
 
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  background-color: transparent;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

@@ -1,58 +1,55 @@
-# emberconf2020-domain-modeling
+# EmberConf 2020: Domain Modeling with Mirage JS
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+## Intro
 
-## Prerequisites
+- DB is source of truth
+- Staleness of data
+  - In traditional SSR, user fetches HTML (wikipedia page). Is it stale? How does user know? cmd+R to reload
+  - Does it work? Often yes. The model is very simple.
+  - But can you build Slack with it?
+  - Ideally, User shouldn’t be responsible for whether they’re looking at fresh data. Think about iMessages or text messaging. Push vs. pull.
+  - This is the power that JS gives us.
+  - Keeping our UIs updated means we need to be intelligent about what data we fetch on our user’s behalf, as well as when we fetch it.
+  - Sometimes we want to push all new data. In Slack, you get a message, server should push message up to client + UI re-renders
+  - Other times, we want to render from cache. If you open Mail app on Mac or your phone, you have all your recent messages locally. If you get a new email you want to see it, but if you click back and forth between messages you should read them instantly, even if network is down. Want to render from cache.
+  - All of this motivates the question of how best to get data from our servers to our frontends, which is where domain modeling comes into play.
 
-You will need the following things properly installed on your computer.
+## Exercise 1: Getting familiar with the inspector
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/)
-* [Yarn](https://yarnpkg.com/)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+Explore the inspector
 
-## Installation
+## Exercise 2: Models, the database and CRUD
 
-* `git clone <repository-url>` this repository
-* `cd emberconf2020-domain-modeling`
-* `yarn install`
+Try replacing the 5 RESTful routes with the resource shorthand.
 
-## Running / Development
+## Exercise 3: Fetching a graph, server-side default includes
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+How might we render list of messages in Discord? We need the users' name next to each message.
 
-### Code Generators
+The default is to **sideload** the related data. Sideloading produces **normalized data**.
 
-Make use of the many generators for code, try `ember help generate` for more details
+Click on the database tab. You can see that the query is really fetching a _snapshot_ of the database.
 
-### Running Tests
+Now set `embed: true` in your serializer. This data is **denormalized**. You can see duplicated information when compared to our db.
 
-* `ember test`
-* `ember test --server`
+You might hear this referred to as a **materialized view** of the database.
 
-### Linting
+## Exercise 4: Fetching a graph, client-side query
 
-* `yarn lint:hbs`
-* `yarn lint:js`
-* `yarn lint:js --fix`
+In the last exercise the server made the choice about what related data to include in the response. Sometimes this makes sense, but in recent years tools like JSON:API and GraphQL have given the client more control.
 
-### Building
+Let's look at a JSON:API backend.
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+**Q:** Does JSON:API product normalized or denormalized data?
 
-### Deploying
+# Exercise 5
 
-Specify what it takes to deploy your app.
+---
 
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+- New server resources just for frontend
+  - DHH talk: Resources On Rails
+  - EmberMap bookshelves
+- Normalized vs. denormalized data
+- Materialized views
+  - Difference between post.comments.length and post.commentsCount
+  - Both become stale once fetched on client. What’s the difference?
