@@ -5,11 +5,17 @@ const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // options
-    snippetPaths: ["app/exercises"]
+    snippetPaths: ["app/exercises"],
+    "ember-prism": {
+      plugins: ["normalize-plugins"]
+    }
+    // 'theme': 'twilight',
+    // 'components': ['scss', 'javascript'], //needs to be an array, or undefined.
   });
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
+  app.import("tailwind-build/tailwind-build.css");
   //
   // If you need to use different assets in different
   // environments, specify an object as the first parameter. That

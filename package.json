@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
-    "build:styles": "postcss app/styles/_app.css -o=app/styles/app.css",
+    "styles:build": "postcss app/styles/_app.css -o=app/styles/app.css",
+    "styles:watch": "postcss app/styles/_app.css -o=app/styles/app.css -w",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
@@ -46,6 +47,7 @@
     "ember-load-initializers": "^2.1.1",
     "ember-math-helpers": "^2.13.0",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-prism": "^0.6.0",
     "ember-qunit": "^4.6.0",
     "ember-render-helpers": "^0.1.1",
     "ember-resolver": "^7.0.0",
@@ -58,6 +60,7 @@
     "miragejs": "^0.1.35",
     "postcss-cli": "^7.1.0",
     "qunit-dom": "^1.0.0",
+    "sass": "^1.26.3",
     "tailwindcss": "^1.2.0"
   },
   "engines": {

@@ -1,7 +1,6 @@
+/* If you change this or the tailwind.config.js, you need to rerun yarn styles:build */
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 nav.app a.active {
@@ -19,3 +18,7 @@ nav.app a:hover:not(.active) {
 /* nav.app a:focus:not(.active) {
   @apply text-white bg-gray-700;
 } */
+
+pre[class*="language-"] {
+  @apply p-0 m-0 mt-2 text-xs bg-transparent;
+}
