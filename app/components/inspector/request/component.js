@@ -4,7 +4,7 @@ import { action } from "@ember/object";
 
 export default class extends Component {
   @tracked method = "GET";
-  @tracked endpoint = "/api/messages";
+  @tracked endpoint;
   @tracked error;
 
   @action

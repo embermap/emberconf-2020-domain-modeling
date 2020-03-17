@@ -1,4 +1,11 @@
-import { Server, Model, Factory, hasMany, belongsTo } from "miragejs";
+import {
+  Server,
+  Model,
+  Factory,
+  hasMany,
+  belongsTo,
+  JSONAPISerializer
+} from "miragejs";
 import faker from "faker";
 
 export default function makeServer() {
@@ -10,6 +17,10 @@ export default function makeServer() {
       message: Model.extend({
         user: belongsTo()
       })
+    },
+
+    serializers: {
+      application: JSONAPISerializer
     },
 
     factories: {
@@ -26,8 +37,6 @@ export default function makeServer() {
     },
 
     routes() {
-      this.namespace = "api";
-
       this.resource("user");
       this.resource("message");
     }

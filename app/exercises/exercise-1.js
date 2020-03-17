@@ -3,8 +3,6 @@ import { Server } from "miragejs";
 export default function makeServer() {
   return new Server({
     routes() {
-      this.namespace = "api";
-
       this.get("/movies", () => {
         return {
           movies: [

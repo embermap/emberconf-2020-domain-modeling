@@ -26,8 +26,6 @@ export default function makeServer() {
     },
 
     routes() {
-      this.namespace = "api";
-
       this.resource("user");
       this.resource("message");
     }
