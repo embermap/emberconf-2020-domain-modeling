@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route";
 import { scheduleOnce } from "@ember/runloop";
 import { set } from "@ember/object";
-import configs from "../exercises";
+import exercises from "../exercises";
 
 export default class extends Route {
   model({ exercise_slug }) {
@@ -9,7 +9,11 @@ export default class extends Route {
       window.server.shutdown();
     }
 
-    let server = configs[exercise_slug]();
+    // Exercises are 1-based
+    let exerciseNumber = +exercise_slug.replace("exercise-", "");
+    let exerciseIndex = exerciseNumber - 1;
+
+    let server = exercises[exerciseIndex]();
     window.server = server;
     return {
       server,

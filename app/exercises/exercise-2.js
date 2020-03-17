@@ -1,5 +1,4 @@
-import { Server, Model, Factory, hasMany, belongsTo } from "miragejs";
-import faker from "faker";
+import { Server, Model, belongsTo, hasMany } from "miragejs";
 
 export default function makeServer() {
   return new Server({
@@ -12,22 +11,28 @@ export default function makeServer() {
       })
     },
 
-    factories: {
-      message: Factory.extend({
-        text() {
-          return faker.lorem.sentence();
-        }
-      })
-    },
-
     seeds(server) {
-      let user = server.create("user", { name: "Sam" });
-      server.createList("message", 20, { user });
+      let sam = server.create("user", { name: "Sam" });
+      let ryan = server.create("user", { name: "Ryan" });
+
+      sam.createMessage({ text: "hey!" });
+      ryan.createMessage({ text: "hey man" });
+      ryan.createMessage({ text: "hows #coronaconf2020 going?" });
+      sam.createMessage({
+        text: "I managed to buy groceries but somehow all I'm eating is candy"
+      });
     },
 
     routes() {
-      this.resource("user");
-      this.resource("message");
+      this.get("/movies", () => {
+        return {
+          movies: [
+            { id: 1, name: "Inception", year: 2010 },
+            { id: 2, name: "Interstellar", year: 2014 },
+            { id: 3, name: "Dunkirk", year: 2017 }
+          ]
+        };
+      });
     }
   });
 }
