@@ -29,6 +29,7 @@ export default class extends Component {
       .then(() => {
         this.error = null;
       })
+
       .catch(e => {
         this.error = `Your Mirage server has no handler for a ${this.method} request to "${this.endpoint}".`;
       });

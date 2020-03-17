@@ -22,7 +22,7 @@ export default function makeServer() {
 
     seeds(server) {
       let user = server.create("user", { name: "Sam" });
-      server.createList("message", 10, { user });
+      server.createList("message", 20, { user });
     },
 
     routes() {

@@ -1,23 +1,37 @@
 <div class="flex flex-col w-1/2">
-  <div class="flex flex-col px-4 py-4 h-28">
-    <h2>
-      <Svgs::Mirage class="text-gray-900 h-7" />
-    </h2>
-    <div class="mt-auto text-sm">
-      Database
+  <Tabs as |t|>
+    <div class="z-0 flex flex-col shadow h-28">
+      <h2 class='mx-auto mt-6'>
+        <Svgs::Mirage class="text-gray-900 h-7" />
+      </h2>
+  
+      <div class="px-4 py-3 mt-auto text-sm">
+        <t.Tab>Config</t.Tab>
+        <t.Tab>Database</t.Tab>
+      </div>
     </div>
-  </div>
-  <Inspector::Database @server={{@server}} />
+
+    <div class="flex-1 overflow-y-scroll bg-gray-100 ">
+      <t.Panel>
+        <Inspector::ConfigViewer @exerciseSlug={{@exerciseSlug}} />
+      </t.Panel>
+      <t.Panel>
+        <Inspector::Database @server={{@server}} />
+      </t.Panel>
+    </div>
+  </Tabs>
 </div>
 <div class="flex flex-col w-1/2 border-l-4 border-gray-200">
   <div class="flex flex-col border-b h-1/2">
-    <div class="flex flex-col px-4 py-4 h-28">
-      <h2 class="font-semibold tracking-wide text-gray-700 uppercase">
+    <div class="flex flex-col h-28">
+      <h2 class="mx-auto mt-6 font-semibold tracking-wide text-gray-700 uppercase">
         Client
       </h2>
-      <div class="mt-auto text-sm">
-        Request
-      </div>
+      <Tabs as |t|>
+        <div class="px-4 py-3 mt-auto text-sm">
+          <t.Tab>Request</t.Tab>
+        </div>
+      </Tabs>
     </div>
     <Inspector::Request @server={{@server}} />
   </div>

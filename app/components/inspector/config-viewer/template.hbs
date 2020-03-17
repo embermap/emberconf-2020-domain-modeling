@@ -1,0 +1,5 @@
+<div class="p-4">
+  {{#let (get-code-snippet (concat @exerciseSlug ".js")) as |snippet|}}
+    <pre class='text-xs {{snippet.language}}'>{{snippet.source}}</pre>
+  {{/let}}
+</div>

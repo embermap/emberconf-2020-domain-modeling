@@ -4,14 +4,17 @@ import { set } from "@ember/object";
 import configs from "../exercises";
 
 export default class extends Route {
-  model({ step }) {
+  model({ exercise_slug }) {
     if (window.server) {
       window.server.shutdown();
     }
 
-    let server = configs[step]();
+    let server = configs[exercise_slug]();
     window.server = server;
-    return server;
+    return {
+      server,
+      exerciseSlug: exercise_slug
+    };
   }
 
   setupController(controller, model) {
