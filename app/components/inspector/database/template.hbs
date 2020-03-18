@@ -8,39 +8,43 @@
       {{/each}}
     </nav>
     <div class="flex flex-col flex-1 h-0 pb-2">
-      <div class="py-3 -my-2 overflow-x-auto">
-        <div
-          class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200"
-        >
-          <table class="min-w-full">
-            <thead>
-              <tr>
-                {{#each this.fields as |field|}}
-                  <th
-                    class="px-4 py-3 text-xs font-semibold leading-4 text-left text-gray-700 border-b border-gray-200 bg-gray-50"
-                  >
-                    {{field}}
-                  </th>
-                {{/each}}
-              </tr>
-            </thead>
-            <tbody>
-              {{#each this.rows as |row index|}}
-                <tr class="{{if (mod index 2) "bg-gray-50" "bg-white"}}">
-                  {{#each row.attrs as |attr index|}}
-                    <td
-                      class="px-4 py-4 text-sm leading-5 text-gray-600 truncate
-                        {{if (eq index (sub row.attrs.length 1)) "w-full"}}"
+      {{#if this.rows}}
+        <div class="py-3 -my-2 overflow-x-auto">
+          <div
+            class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200"
+          >
+            <table class="min-w-full">
+              <thead>
+                <tr>
+                  {{#each this.fields as |field|}}
+                    <th
+                      class="px-4 py-3 text-xs font-semibold leading-4 text-left text-gray-700 border-b border-gray-200 bg-gray-50"
                     >
-                      {{attr}}
-                    </td>
+                      {{field}}
+                    </th>
                   {{/each}}
                 </tr>
-              {{/each}}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {{#each this.rows as |row index|}}
+                  <tr class="{{if (mod index 2) "bg-gray-50" "bg-white"}}">
+                    {{#each row.attrs as |attr index|}}
+                      <td
+                        class="px-4 py-4 text-sm leading-5 text-gray-600 truncate
+                          {{if (eq index (sub row.attrs.length 1)) "w-full"}}"
+                      >
+                        {{attr}}
+                      </td>
+                    {{/each}}
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      {{else}}
+        <p class='px-4 mt-2 text-sm text-gray-400'>The {{capitalize this.activeTableName}} table has no records.</p>
+      {{/if}}
     </div>
   </Tabs>
 {{else}}

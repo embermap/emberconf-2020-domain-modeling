@@ -1,18 +1,9 @@
 // Exercise 2: CRUD
-import { Server, Model, RestSerializer } from "miragejs";
+import { Server, RestSerializer } from "miragejs";
 
 export default function makeServer() {
   return new Server({
     serializers: { application: RestSerializer },
-
-    models: {
-      user: Model
-    },
-
-    seeds(server) {
-      server.create("user", { name: "Sam" });
-      server.createList("user", 30, { name: "User" });
-    },
 
     routes() {
       this.get("/users", (schema, request) => {

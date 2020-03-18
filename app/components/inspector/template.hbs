@@ -1,25 +1,38 @@
 <div class="flex flex-col w-1/2">
-  <Tabs as |t|>
-    <div class="z-0 flex flex-col shadow h-28">
-      <h2 class='mx-auto mt-6'>
-        <Svgs::Mirage class="text-gray-900 h-7" />
-      </h2>
-  
-      <div class="px-4 py-3 mt-auto text-sm">
-        <t.Tab>Config</t.Tab>
-        <t.Tab>Database</t.Tab>
-      </div>
-    </div>
+  <div class="z-0 flex flex-col shadow h-28">
+    <h2 class='mx-auto mt-6'>
+      <Svgs::Mirage class="text-gray-900 h-7" />
+    </h2>
 
-    <div class="flex flex-col flex-1 bg-gray-100">
-      <t.Panel>
-        <Inspector::ConfigViewer @exerciseSlug={{@exerciseSlug}} />
-      </t.Panel>
-      <t.Panel>
-        <Inspector::Database @db={{this.db}} />
-      </t.Panel>
+    <div class="px-4 py-3 mt-auto text-sm">
+      <LinkTo
+        @route='exercise'
+        @query={{hash tab='config'}}
+        class="mr-4 text-sm font-medium focus:outline-none
+          {{if (eq @activeTab 'config') "text-gray-700" "text-gray-400 hover:text-gray-900"}}
+        "
+      >
+        Config
+      </LinkTo>
+      <LinkTo
+        @route='exercise'
+        @query={{hash tab='database'}}
+        class="mr-4 text-sm font-medium focus:outline-none
+          {{if (eq @activeTab 'database') "text-gray-700" "text-gray-400 hover:text-gray-900"}}
+        "
+      >
+        Database
+      </LinkTo>
     </div>
-  </Tabs>
+  </div>
+
+  <div class="flex flex-col flex-1 h-0 overflow-y-auto bg-gray-100">
+    {{#if (eq @activeTab 'config')}}
+      <Inspector::ConfigViewer @exerciseSlug={{@exerciseSlug}} />
+    {{else}}
+      <Inspector::Database @db={{this.db}} />
+    {{/if}}
+  </div>
 </div>
 <div class="flex flex-col w-1/2 border-l-4 border-gray-200">
   <div class="flex flex-col border-b h-1/2">

@@ -29092,6 +29092,7 @@ pre[class*="language-"] {
   padding-left: 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
+  cursor: text;
 }
 
 @media (min-width: 640px) {

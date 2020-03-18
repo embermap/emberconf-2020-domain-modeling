@@ -32,5 +32,5 @@ pre[class*="language-"] {
 }
 
 .CodeMirror {
-  @apply block w-full h-full text-sm leading-5 transition duration-150 ease-in-out form-textarea;
+  @apply block w-full h-full text-sm leading-5 transition duration-150 ease-in-out form-textarea cursor-text;
 }

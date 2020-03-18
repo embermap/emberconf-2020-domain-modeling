@@ -24,9 +24,70 @@ Explore the inspector
 
 Resources vs. database records.
 
+[ Add Model ]
+
+[ Add seeds ]
+
 [ Replace the 5 routes with the resource shorthand ]
 
-## Exercise 3: Fetching a graph, server-side default includes
+## Exercise 3: Belongs to association
+
+Where should we store message data?
+
+[ Make a new Message model]
+
+How can we associate these two things? Using a _foreign key_.
+
+[ Make a belongsTo relationship ]
+
+Mirage's ORM helps manage foreign keys for us, just like most backend systems.
+
+## Exercise 4: Creating a new belongs to association
+
+Users can also have activities.
+
+Create a new activity model, associate it with a user, and create some activities for the user.
+
+A sample activity looks like this:
+
+```js
+let activity = {
+  userId: 1,
+  kind: "mention" // upload, reaction
+};
+```
+
+[ E: Create activity ]
+
+Try deleting a user!
+
+## Exercise 5: Fetching a graph, server-side driven
+
+Now, we have our data modeled in our database. But how can our client best fetch it?
+
+[ Fetch /messages. Fetch /users. ]
+
+Could fetch separately and then stitch.
+
+We want to enable our clients to fetch a _graph_ of data in one request.
+
+[ Define message serializer, add include ]
+
+The default is to **sideload** the related data. Sideloading produces **normalized data**.
+
+[ Set embed: true ]
+
+This data is **denormalized**. You can see duplicated information when compared to our db.
+
+You might hear this referred to as a **materialized view** of the database.
+
+Now, let's say we wanted to build a screen for a user, and show their recent messages. How might we get the data?
+
+[ **Exercise:** Fetch the user and their messages ]
+
+---
+
+## Exercise n: Fetching a graph, server-side default includes
 
 How might we render list of messages in Discord? We need the users' name next to each message.
 
@@ -48,7 +109,7 @@ Now, let's say we wanted to build a screen for a user, and show their recent mes
 
 [ **Exercise:** Fetch the user and their messages ]
 
-## Exercise 4: Fetching a graph, client-side query
+## Exercise n: Fetching a graph, client-side query
 
 In the last exercise the server made the choice about what related data to include in the response. Sometimes this makes sense, but in recent years tools like JSON:API and GraphQL have shifted the control to the client.
 
@@ -58,7 +119,7 @@ Let's look at a JSON:API backend.
 
 **Q:** Does JSON:API product normalized or denormalized data?
 
-# Exercise 5
+# Exercise n
 
 # Exercise n
 
@@ -69,9 +130,17 @@ Let's look at a JSON:API backend.
 # Exercise n
 
 - Materialized views
+
   - Difference between post.comments.length and post.commentsCount
   - Both become stale once fetched on client. What’s the difference?
 
-## Further learning resources
+- Client-side identity
+
+- UI drives your server’s domain modeling
+
+- Backend For a Frontend (BFF)
+
+## More learning resources
 
 - [DHH talk Resources on Rails]()
+- [Backend for a frontend article Fowler]()

@@ -1,3 +1,6 @@
 {{#if this.show}}
-  <Inspector @server={{@model.server}} @exerciseSlug={{@model.exerciseSlug}} />
+  <Inspector @server={{@model.server}}
+    @exerciseSlug={{@model.exerciseSlug}}
+    @activeTab={{this.tab}}
+    />
 {{/if}}

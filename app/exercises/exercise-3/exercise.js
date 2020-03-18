@@ -1,36 +1,21 @@
-// Exercise 3: Fetching a graph, server-side
-import { Server, Model, belongsTo, hasMany, RestSerializer } from "miragejs";
+// Exercise 3: Belongs to association
+import { Server, Model, RestSerializer } from "miragejs";
 
 export default function makeServer() {
   return new Server({
-    serializers: {
-      application: RestSerializer
-    },
+    serializers: { application: RestSerializer },
 
     models: {
-      user: Model.extend({
-        messages: hasMany()
-      }),
-      message: Model.extend({
-        user: belongsTo()
-      })
+      user: Model
     },
 
     seeds(server) {
-      let sam = server.create("user", { name: "Sam" });
-      let ryan = server.create("user", { name: "Ryan" });
-
-      sam.createMessage({ text: "hey!" });
-      ryan.createMessage({ text: "hey man" });
-      ryan.createMessage({ text: "hows #coronaconf2020 going?" });
-      sam.createMessage({
-        text: "I managed to buy groceries but somehow all I'm eating is candy"
-      });
+      server.create("user", { name: "Sam" });
+      server.create("user", { name: "Ryan" });
     },
 
     routes() {
       this.resource("user");
-      this.resource("message");
     }
   });
 }
