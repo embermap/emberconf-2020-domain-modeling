@@ -11,6 +11,7 @@ export default function makeServer() {
 
     seeds(server) {
       server.create("user", { name: "Sam" });
+      server.createList("user", 30, { name: "User" });
     },
 
     routes() {

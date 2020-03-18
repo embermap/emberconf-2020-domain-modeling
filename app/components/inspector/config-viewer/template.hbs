@@ -1,5 +1,5 @@
-<div class="p-4">
-  {{#let (get-code-snippet (concat @exerciseSlug ".js")) as |snippet|}}
+<div class="p-4 overflow-y-auto">
+  {{#let (get-code-snippet (concat @exerciseSlug "/exercise.js")) as |snippet|}}
     <CodeBlock @language={{snippet.language}}>
       {{snippet.source}}
     </CodeBlock>

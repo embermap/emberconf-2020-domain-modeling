@@ -1,5 +1,5 @@
-<div {{did-insert (fn @didInsert this.id)}}>
-  {{#if this.isActive}}
-    {{yield}}
-  {{/if}}
-</div>
+{{did-insert this.handleInsert}}
+
+{{#if this.isActive}}
+  {{yield}}
+{{/if}}

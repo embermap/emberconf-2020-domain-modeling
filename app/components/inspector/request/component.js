@@ -3,7 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
 export default class extends Component {
-  @tracked method = "POST";
+  @tracked method = "GET";
   @tracked endpoint;
   @tracked error;
 

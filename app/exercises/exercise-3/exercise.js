@@ -4,10 +4,7 @@ import { Server, Model, belongsTo, hasMany, RestSerializer } from "miragejs";
 export default function makeServer() {
   return new Server({
     serializers: {
-      application: RestSerializer,
-      message: RestSerializer.extend({
-        include: ["user"]
-      })
+      application: RestSerializer
     },
 
     models: {
