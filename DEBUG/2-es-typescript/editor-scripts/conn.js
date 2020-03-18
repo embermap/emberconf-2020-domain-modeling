@@ -1,0 +1,10 @@
+import Penpal from 'penpal';
+import { setupEditor, updateEditor } from './editor';
+const conn = Penpal.connectToParent({
+    methods: {
+        setupEditor,
+        updateEditor
+    }
+});
+export default conn;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29ubi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImNvbm4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxNQUFNLE1BQU0sUUFBUSxDQUFDO0FBQzVCLE9BQU8sRUFBRSxXQUFXLEVBQUUsWUFBWSxFQUFFLE1BQU0sVUFBVSxDQUFDO0FBRXJELE1BQU0sSUFBSSxHQUFHLE1BQU0sQ0FBQyxlQUFlLENBQUM7SUFDbEMsT0FBTyxFQUFFO1FBQ1AsV0FBVztRQUNYLFlBQVk7S0FDYjtDQUNGLENBQUMsQ0FBQztBQUVILGVBQWUsSUFBSSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFBlbnBhbCBmcm9tICdwZW5wYWwnO1xuaW1wb3J0IHsgc2V0dXBFZGl0b3IsIHVwZGF0ZUVkaXRvciB9IGZyb20gJy4vZWRpdG9yJztcblxuY29uc3QgY29ubiA9IFBlbnBhbC5jb25uZWN0VG9QYXJlbnQoe1xuICBtZXRob2RzOiB7XG4gICAgc2V0dXBFZGl0b3IsXG4gICAgdXBkYXRlRWRpdG9yXG4gIH1cbn0pO1xuXG5leHBvcnQgZGVmYXVsdCBjb25uO1xuIl19

@@ -3,9 +3,28 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 
 export default class extends Component {
-  @tracked method = "GET";
+  @tracked method = "POST";
   @tracked endpoint;
   @tracked error;
+
+  @action
+  initializeCodeMirror(el) {
+    let cm = window.CodeMirror.fromTextArea(el, {
+      value: "function myScript(){return 100;}\n",
+      autoCloseBrackets: true,
+      mode: { name: "javascript", json: true },
+      tabSize: 2,
+      extraKeys: {
+        "Cmd-Enter": () => {
+          this.makeRequest();
+        }
+      }
+      // lineNumbers: true
+    });
+    cm.on("change", cm => {
+      this.requestBody = cm.getValue();
+    });
+  }
 
   @action
   updateMethod(e) {
@@ -26,6 +45,11 @@ export default class extends Component {
   }
 
   @action
+  handleEditorChange(code) {
+    this.requestBody = code;
+  }
+
+  @action
   handleSubmit(e) {
     e.preventDefault();
     this.makeRequest();
@@ -33,10 +57,15 @@ export default class extends Component {
 
   makeRequest() {
     this.args.onRequest();
-    let body =
-      this.method === "GET"
-        ? null
-        : JSON.stringify(eval("(" + this.requestBody + ")"));
+    let body;
+
+    if (this.method !== "GET") {
+      try {
+        body = JSON.stringify(eval("(" + this.requestBody + ")"));
+      } catch (error) {
+        //
+      }
+    }
 
     fetch(this.endpoint, {
       method: this.method,

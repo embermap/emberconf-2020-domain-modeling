@@ -28,6 +28,7 @@
     "autoprefixer": "^9.7.4",
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
+    "codemirror": "^5.52.0",
     "ember-auto-import": "^1.5.3",
     "ember-cli": "~3.16.0",
     "ember-cli-app-version": "^3.2.0",
@@ -61,7 +62,6 @@
     "miragejs": "^0.1.35",
     "postcss-cli": "^7.1.0",
     "qunit-dom": "^1.0.0",
-    "sass": "^1.26.3",
     "tailwindcss": "^1.2.0"
   },
   "engines": {

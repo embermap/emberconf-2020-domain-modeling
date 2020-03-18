@@ -30,3 +30,7 @@ pre[class*="language-"] {
 .style .token.string {
   @apply bg-transparent;
 }
+
+.CodeMirror {
+  @apply block w-full h-full text-sm leading-5 transition duration-150 ease-in-out form-textarea;
+}

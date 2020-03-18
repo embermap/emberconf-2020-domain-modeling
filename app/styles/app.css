@@ -29070,6 +29070,30 @@ pre[class*="language-"] {
   background-color: transparent;
 }
 
+.CodeMirror {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

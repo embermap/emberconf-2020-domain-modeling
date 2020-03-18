@@ -1,68 +1,53 @@
 <div class="flex flex-col flex-1 bg-gray-100 border-t border-gray-300">
-  <div class='p-4'>
-    <form {{on "submit" this.handleSubmit}}>
+  <div class='flex-1 h-0'>
+    <form {{on "submit" this.handleSubmit}} class='flex flex-col h-full'>
       <label for="endpoint" class="sr-only">
         Endpoint
       </label>
-      <div class="flex mt-1 rounded-md shadow-sm">
-        <div class="relative flex-grow focus-within:z-10">
-          <div class="absolute inset-y-0 left-0 flex items-center">
-            <select
-              aria-label="Method"
-              class="h-full py-0 pl-3 text-gray-500 bg-transparent border-transparent form-select pr-7 sm:text-sm sm:leading-5"
-              {{on 'change' this.updateMethod}}
-            >
-              <option value='GET' selected>
-                GET
-              </option>
-              <option value='POST'>
-                POST
-              </option>
-              <option value='PUT'>
-                PUT
-              </option>
-              <option value='PATCH'>
-                PATCH
-              </option>
-              <option value='DELETE'>
-                DELETE
-              </option>
-            </select>
+      <div class="p-4">
+        <div class="flex mt-1 rounded-md shadow-sm">
+          <div class="relative flex-grow focus-within:z-10">
+            <div class="absolute inset-y-0 left-0 flex items-center">
+              <select
+                aria-label="Method"
+                class="h-full py-0 pl-3 text-gray-500 bg-transparent border-transparent form-select pr-7 sm:text-sm sm:leading-5"
+                {{on 'change' this.updateMethod}}
+              >
+                {{#each (array 'GET' 'POST' 'PUT' 'PATCH' 'DELETE') as |localMethod|}}
+                  <option value={{localMethod}} selected={{eq this.method localMethod}}>
+                    {{localMethod}}
+                  </option>
+                {{/each}}
+              </select>
+            </div>
+            <input
+              value={{this.endpoint}}
+              {{on 'input' this.handleInput}}
+              id="endpoint"
+              class="block w-full pl-24 transition duration-150 ease-in-out rounded-none form-input rounded-l-md sm:text-sm sm:leading-5"
+              placeholder="/users"
+            />
           </div>
-          <input
-            value={{this.endpoint}}
-            {{on 'input' this.handleInput}}
-            id="endpoint"
-            class="block w-full pl-24 transition duration-150 ease-in-out rounded-none form-input rounded-l-md sm:text-sm sm:leading-5"
-            placeholder="/users"
-          />
-        </div>
-        <button
-          type="submit"
-          class="relative inline-flex items-center px-3 py-2 -ml-px text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out border border-gray-300 rounded-r-md bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
-        >
-          <span class="mr-2">Send</span>
-          <svg
-            viewBox="0 0 20 20"
-            fill="none"
-            class="w-5 h-5 text-gray-400"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            type="submit"
+            class="relative inline-flex items-center px-3 py-2 -ml-px text-sm font-medium leading-5 text-gray-600 transition duration-150 ease-in-out border border-gray-300 rounded-r-md bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-600"
           >
-            <path
-              d="M14.4945 10.9288L6.54117 15.8508C5.86621 16.2681 5 15.7628 5 14.9216V5.07765C5 4.23776 5.86496 3.73117 6.54117 4.14978L14.4945 9.07175C14.6481 9.16524 14.7757 9.30037 14.8645 9.46344C14.9532 9.62651 15 9.81172 15 10.0003C15 10.1889 14.9532 10.3741 14.8645 10.5371C14.7757 10.7002 14.6481 10.8353 14.4945 10.9288V10.9288Z"
-              fill="#76889A"
-            ></path>
-          </svg>
-        </button>
+            <span class="mr-1">Send</span>
+            <svg viewBox="0 0 20 20" fill="currentColor"
+              class="w-5 h-5"
+            >
+              <path d="M13.5956 10.774L7.23294 14.8757C6.69297 15.2234 6 14.8023 6 14.1013V5.89804C6 5.19814 6.69197 4.77597 7.23294 5.12481L13.5956 9.22646C13.7185 9.30436 13.8206 9.41697 13.8916 9.55287C13.9626 9.68876 14 9.8431 14 10.0002C14 10.1574 13.9626 10.3117 13.8916 10.4476C13.8206 10.5835 13.7185 10.6961 13.5956 10.774V10.774Z" />
+            </svg>
+          </button>
+        </div>
       </div>
 
-      {{#if (not-eq this.method 'GET')}}
-        <p class="mt-6 text-sm text-gray-500">Request body</p>
-        <div class="flex mt-2 rounded-md shadow-sm">
-          <Textarea @value={{this.requestBody}} {{on 'keydown' this.handleTextareaKeydown}} id="about" rows="4" class="block w-full transition duration-150 ease-in-out form-textarea sm:text-sm sm:leading-5" />
+      <div class='{{if (eq this.method 'GET') 'hidden'}} flex-1 flex flex-col px-4 pb-4'>
+        <p class="mt-2 text-sm text-gray-500">Request body</p>
+        <div class="flex-1 h-0 mt-2 overflow-auto rounded-md shadow-sm">
+          <textarea {{did-insert this.initializeCodeMirror}} id="code" rows="4" class="block w-full transition duration-150 ease-in-out form-textarea sm:text-sm sm:leading-5" />
         </div>
-      {{/if}}
-
+      </div>
     </form>
   </div>
 
