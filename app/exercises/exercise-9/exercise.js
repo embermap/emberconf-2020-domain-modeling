@@ -8,10 +8,6 @@ export default function makeServer() {
       message: RestSerializer.extend({
         include: ["user"],
         embed: true
-      }),
-      user: RestSerializer.extend({
-        include: ["messages"],
-        embed: true
       })
     },
 

@@ -26,6 +26,7 @@ export default function makeServer() {
 
     routes() {
       this.resource("user");
+      this.resource("message");
     }
   });
 }

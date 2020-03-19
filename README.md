@@ -42,10 +42,6 @@ Define a Message model and create some messages in `seeds`. Add a resource to ro
 
 ## Exercise 4: Belongs to association
 
-Where should we store message data?
-
-[ Make a new Message model]
-
 How can we associate these two things? Using a _foreign key_.
 
 [ Make a belongsTo relationship ]
@@ -161,7 +157,9 @@ How might the client add and remove users to channels?
 
 [ Send PATCH removing Sam from a channel ]
 
-Alternatives?
+Can be tempting to add new ad hoc endpoints here: `PATCH /users/1/add-channel`.
+
+What are the alternatives?
 
 [ New model ]
 
