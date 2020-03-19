@@ -42,7 +42,7 @@ How can we associate these two things? Using a _foreign key_.
 
 Mirage's ORM helps manage foreign keys for us, just like most backend systems.
 
-## Exercise 4: Creating a new belongs to association
+## Exercise 4: Practice creating a belongs to association
 
 Users can also have activities.
 
@@ -59,11 +59,33 @@ let activity = {
 
 [ E: Create activity ]
 
-Try deleting a user!
+Try deleting a user! What happens to the associated messages and activites?
 
-## Exercise 5: Fetching a graph, server-side driven
+## Exercise 5: Has many association
 
-Now, we have our data modeled in our database. But how can our client best fetch it?
+The other association type is a Has Many.
+
+Let's go back to just having users and messages that are unassociated.
+
+Instead of associating the user with the message, we can associate the messages with the user.
+
+[ Add user.messages hasMany association ]
+
+## Exercise 6: One to many association
+
+So far we've seen one-way relationships. Mirage (and most backend systems) support two-way relationships, or relationships that have an _inverse_.
+
+Let's make user and messages a one-to-many relationship.
+
+[ Add user.messages and message.users ]
+
+Notice how Mirage keeps the fks in sync, regardless of which side you edit.
+
+## Exercise 7: Fetching a graph, server driven
+
+Alright - now that we have our data modeled in our database, it's time to fetch it. But how can our client best fetch it?
+
+Let's say we're building Slack and we want to display a list of messages. Need to show the message and author for each message.
 
 [ Fetch /messages. Fetch /users. ]
 
@@ -81,33 +103,13 @@ This data is **denormalized**. You can see duplicated information when compared 
 
 You might hear this referred to as a **materialized view** of the database.
 
+## Exercise 6: Practice with includes
+
 Now, let's say we wanted to build a screen for a user, and show their recent messages. How might we get the data?
 
 [ **Exercise:** Fetch the user and their messages ]
 
 ---
-
-## Exercise n: Fetching a graph, server-side default includes
-
-How might we render list of messages in Discord? We need the users' name next to each message.
-
-[ Add include ]
-
-The default is to **sideload** the related data. Sideloading produces **normalized data**.
-
-Click on the database tab. You can see that the query is really fetching a _snapshot_ of the database.
-
-Now set `embed: true` in your serializer.
-
-[ Set embed: true ]
-
-This data is **denormalized**. You can see duplicated information when compared to our db.
-
-You might hear this referred to as a **materialized view** of the database.
-
-Now, let's say we wanted to build a screen for a user, and show their recent messages. How might we get the data?
-
-[ **Exercise:** Fetch the user and their messages ]
 
 ## Exercise n: Fetching a graph, client-side query
 

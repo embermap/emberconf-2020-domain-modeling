@@ -1,13 +1,14 @@
-// Exercise 4: Practice with belongs to
-import { Server, Model, RestSerializer, belongsTo } from "miragejs";
+// Exercise 6 solution: One to many
+import { Server, Model, RestSerializer, hasMany, belongsTo } from "miragejs";
 
 export default function makeServer() {
   return new Server({
     serializers: { application: RestSerializer },
 
     models: {
-      user: Model,
-
+      user: Model.extend({
+        messages: hasMany()
+      }),
       message: Model.extend({
         user: belongsTo()
       })
@@ -17,14 +18,14 @@ export default function makeServer() {
       let sam = server.create("user", { name: "Sam" });
       let ryan = server.create("user", { name: "Ryan" });
 
-      server.create("message", { user: ryan, text: "hey!" });
-      server.create("message", { user: sam, text: "hey man" });
+      server.create("message", { user: sam, text: "hey!" });
+      server.create("message", { user: ryan, text: "hey man" });
       server.create("message", {
-        user: ryan,
+        user: sam,
         text: "hows #coronaconf2020 going?"
       });
       server.create("message", {
-        user: sam,
+        user: ryan,
         text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
     },

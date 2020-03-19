@@ -1,4 +1,4 @@
-// Exercise 2: CRUD
+// Exercise 2 solution: CRUD
 import { Server, Model, RestSerializer } from "miragejs";
 
 export default function makeServer() {

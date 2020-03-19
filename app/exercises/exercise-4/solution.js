@@ -1,4 +1,4 @@
-// Exercise 4: Another belongs to association
+// Exercise 4 solution: Practice with belongs to
 import { Server, Model, RestSerializer, belongsTo } from "miragejs";
 
 export default function makeServer() {
