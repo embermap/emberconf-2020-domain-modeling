@@ -6,15 +6,11 @@ In most web apps, the database is the source of truth.
 
 As frontend developers we often don't have to deal directly with it. But we do need to understand enough about our server resources to be able to do our job.
 
-- In traditional SSR, user fetches HTML (wikipedia page). Is it stale? How does user know? cmd+R to reload
-- Does it work? Often yes. The model is very simple.
-- But can you build Slack with it?
-- Ideally, User shouldn’t be responsible for whether they’re looking at fresh data. Think about iMessages or text messaging. Push vs. pull.
-- This is the power that JS gives us.
-- Keeping our UIs updated means we need to be intelligent about what data we fetch on our user’s behalf, as well as when we fetch it.
-- Sometimes we want to push all new data. In Slack, you get a message, server should push message up to client + UI re-renders
-- Other times, we want to render from cache. If you open Mail app on Mac or your phone, you have all your recent messages locally. If you get a new email you want to see it, but if you click back and forth between messages you should read them instantly, even if network is down. Want to render from cache.
-- All of this motivates the question of how best to get data from our servers to our frontends, which is where domain modeling comes into play.
+Traditional SSR has the luxury of getting to speak directly to the database (the source of truth) on every request. But SSR can't build rich experiences on the web, like Slack or Google Calendar.
+
+These types of JS apps - like the apps we build with Ember - must grapple with the fact that the source of truth is remote, and requires a network call to communicate with.
+
+All of this motivates the question of how best to get data from our servers to our frontends, which is where domain modeling comes into play.
 
 ## Exercise 1: Getting familiar with the inspector
 
@@ -125,40 +121,74 @@ Now, let's say we wanted to build a screen for a single user, and show them all 
 
 Did you go with embedded or sideloaded? Was there data duplication?
 
----
-
-## Exercise n: Fetching a graph, client-side query
+## Exercise 10: Fetching a graph, client-side query
 
 In the last exercise the server made the choice about what related data to include in the response. Sometimes this makes sense, but in recent years tools like JSON:API and GraphQL have shifted the control to the client.
 
 Let's look at a JSON:API backend.
 
-[ Fetch messages ][ fetch messages with their users ]
+[ Fetch messages ]
 
-**Q:** Does JSON:API product normalized or denormalized data?
+[ Fetch messages with their users ]
 
-# Exercise n
+**Q:** Does JSON:API produce normalized or denormalized data?
 
-# Exercise n
+Putting power in the client keeps the server more flexible + able to support more UI use cases.
 
-- New server resources just for frontend
-  - DHH talk: Resources On Rails
-  - EmberMap bookshelves
+...sound familiar?
 
-# Exercise n
+## Exericse 11: Fetching a graph with GraphQL
 
-- Materialized views
+Schema. Our domain modeling is the same. No more serializer. One route handler.
 
-  - Difference between post.comments.length and post.commentsCount
-  - Both become stale once fetched on client. What’s the difference?
+So, it's like JSON:API, but often will produce denormalized data. Hyperfocused on being suitable for the particular view. Completely generalized.
 
-- Client-side identity
+**Q:** What are some of the pros/cons of normalized vs. denormalized data? (Client-side identity)
 
-- UI drives your server’s domain modeling
+## Exericse 12: Many to many
 
-- Backend For a Frontend (BFF)
+Ok, circling back to some more domain modeling. Let's look at another type of relationship.
+
+**Q:** How should we associate users to channels?
+
+[ Add user.channels and channel.users ]
+
+Notice how the arrays of foreign keys stay in sync.
+
+## Exercise 13: Many to many: the join record
+
+How might the client add and remove users to channels?
+
+[ Send PATCH removing Sam from a channel ]
+
+Alternatives?
+
+[ New model ]
+
+## Exercise 14: Practice with many to many joins
+
+Time for some practice with joins. We want users to be able to be friends with each other.
+
+One thing to know: if your relationship name doesn't match your model name, you can specify it like this:
+
+```js
+message: Model.extend({
+  author: belongsTo("user")
+});
+```
+
+Some keywords from this exercise: _inverse_, _self-reflexive_ relationships.
+
+## Conclusion
+
+Now you should know just enough about databases and server resources (without having to understand the details, like managing database indexes) to have a much better grasp on how data gets transferred between your frontend and backend.
+
+The data layer is one of the most complex aspects of building a JavaScript app. Domain modeling - how you choose to store and relate your data - has **huge** ramifications for how much your app's complexity can scale as you add more features, and how clean (or not) your frontend code stays.
+
+Data modeling is complex and there are definitely situations where experienced developers disagree over the correct data model. The best way to get better is with practice! You will develop an intuition for when it makes sense to introduce new resources to your system, and how best to relate those resources to your existing graph of models.
 
 ## More learning resources
 
-- [DHH talk Resources on Rails]()
-- [Backend for a frontend article Fowler]()
+- [DHH talk Resources on Rails](https://www.youtube.com/watch?v=GFhoSMD6idk)
+- [The Back-end for Front-end Pattern (BFF)](https://philcalcado.com/2015/09/18/the_back_end_for_front_end_pattern_bff.html)
+- [Pattern: Backends for Frontends](https://samnewman.io/patterns/architectural/bff/)

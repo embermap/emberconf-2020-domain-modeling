@@ -1,10 +1,10 @@
-// Exercise 3: Fetching a graph, server-side
-import { Server, Model, belongsTo, hasMany, RestSerializer } from "miragejs";
+// Exercise 10: Fetching a graph, client-side
+import { Server, Model, belongsTo, hasMany, JSONAPISerializer } from "miragejs";
 
 export default function makeServer() {
   return new Server({
     serializers: {
-      application: RestSerializer
+      application: JSONAPISerializer
     },
 
     models: {

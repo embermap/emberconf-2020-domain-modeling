@@ -1,26 +1,22 @@
-// Exercise 3: Fetching a graph, server-side
-import { Server, Model, belongsTo, hasMany, RestSerializer } from "miragejs";
+// Exercise 13: Many to many, the join record
+import { Server, Model, JSONAPISerializer, hasMany, belongsTo } from "miragejs";
 
 export default function makeServer() {
   return new Server({
-    serializers: {
-      application: RestSerializer,
-      message: RestSerializer.extend({
-        include: ["user"],
-        embed: true
-      }),
-      user: RestSerializer.extend({
-        include: ["messages"],
-        embed: true
-      })
-    },
+    serializers: { application: JSONAPISerializer },
 
     models: {
       user: Model.extend({
-        messages: hasMany()
+        messages: hasMany(),
+        channels: hasMany()
       }),
+
       message: Model.extend({
         user: belongsTo()
+      }),
+
+      channel: Model.extend({
+        users: hasMany()
       })
     },
 
@@ -34,11 +30,20 @@ export default function makeServer() {
       sam.createMessage({
         text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
+
+      let general = server.create("channel", { name: "general" });
+      let video = server.create("channel", { name: "video" });
+      let podcast = server.create("channel", { name: "podcast" });
+
+      general.update({ users: [sam, ryan] });
+      video.update({ users: [sam] });
+      podcast.update({ users: [ryan] });
     },
 
     routes() {
       this.resource("user");
       this.resource("message");
+      this.resource("channel");
     }
   });
 }

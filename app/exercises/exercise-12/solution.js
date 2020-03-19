@@ -1,18 +1,22 @@
-// Exercise 4: Fetching a graph, client-side
-import { Server, Model, belongsTo, hasMany, JSONAPISerializer } from "miragejs";
+// Exercise 12 Solution: Many to many
+import { Server, Model, JSONAPISerializer, hasMany, belongsTo } from "miragejs";
 
 export default function makeServer() {
   return new Server({
-    serializers: {
-      application: JSONAPISerializer
-    },
+    serializers: { application: JSONAPISerializer },
 
     models: {
       user: Model.extend({
-        messages: hasMany()
+        messages: hasMany(),
+        channels: hasMany()
       }),
+
       message: Model.extend({
         user: belongsTo()
+      }),
+
+      channel: Model.extend({
+        users: hasMany()
       })
     },
 
@@ -26,11 +30,20 @@ export default function makeServer() {
       sam.createMessage({
         text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
+
+      let general = server.create("channel", { name: "general" });
+      let video = server.create("channel", { name: "video" });
+      let podcast = server.create("channel", { name: "podcast" });
+
+      general.update({ users: [sam, ryan] });
+      video.update({ users: [sam] });
+      podcast.update({ users: [ryan] });
     },
 
     routes() {
       this.resource("user");
       this.resource("message");
+      this.resource("channel");
     }
   });
 }
