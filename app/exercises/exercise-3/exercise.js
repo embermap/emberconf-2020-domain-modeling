@@ -1,4 +1,4 @@
-// Exercise 3: Belongs to association
+// Exercise 3: Practice creating a model
 import { Server, Model, RestSerializer } from "miragejs";
 
 export default function makeServer() {
@@ -11,7 +11,6 @@ export default function makeServer() {
 
     seeds(server) {
       server.create("user", { name: "Sam" });
-      server.create("user", { name: "Ryan" });
     },
 
     routes() {

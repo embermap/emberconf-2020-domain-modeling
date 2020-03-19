@@ -1,4 +1,4 @@
-// Exercise 4 solution: Practice with belongs to
+// Exercise 4 solution: Belongs to association
 import { Server, Model, RestSerializer, belongsTo } from "miragejs";
 
 export default function makeServer() {
@@ -9,10 +9,6 @@ export default function makeServer() {
       user: Model,
 
       message: Model.extend({
-        user: belongsTo()
-      }),
-
-      activity: Model.extend({
         user: belongsTo()
       })
     },
@@ -31,14 +27,11 @@ export default function makeServer() {
         user: sam,
         text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
-
-      server.create("activity", { kind: "reaction", user: sam });
     },
 
     routes() {
       this.resource("user");
       this.resource("message");
-      this.resource("activity");
     }
   });
 }

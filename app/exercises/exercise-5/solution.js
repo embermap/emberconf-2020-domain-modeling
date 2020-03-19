@@ -1,34 +1,44 @@
-// Exercise 5 solution: Has many association
-import { Server, Model, RestSerializer, hasMany } from "miragejs";
+// Exercise 5 solution: Practice with belongs to
+import { Server, Model, RestSerializer, belongsTo } from "miragejs";
 
 export default function makeServer() {
   return new Server({
     serializers: { application: RestSerializer },
 
     models: {
-      user: Model.extend({
-        messages: hasMany()
+      user: Model,
+
+      message: Model.extend({
+        user: belongsTo()
       }),
-      message: Model
+
+      activity: Model.extend({
+        user: belongsTo()
+      })
     },
 
     seeds(server) {
       let sam = server.create("user", { name: "Sam" });
       let ryan = server.create("user", { name: "Ryan" });
 
-      sam.createMessage({ text: "hey!" });
-      ryan.createMessage({ text: "hey man" });
-      sam.createMessage({
+      server.create("message", { user: ryan, text: "hey!" });
+      server.create("message", { user: sam, text: "hey man" });
+      server.create("message", {
+        user: ryan,
         text: "hows #coronaconf2020 going?"
       });
-      ryan.createMessage({
+      server.create("message", {
+        user: sam,
         text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
+
+      server.create("activity", { kind: "reaction", user: sam });
     },
 
     routes() {
       this.resource("user");
       this.resource("message");
+      this.resource("activity");
     }
   });
 }

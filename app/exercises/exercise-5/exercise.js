@@ -1,5 +1,5 @@
-// Exercise 5: Has many association
-import { Server, Model, RestSerializer } from "miragejs";
+// Exercise 5: Practice with belongs to
+import { Server, Model, RestSerializer, belongsTo } from "miragejs";
 
 export default function makeServer() {
   return new Server({
@@ -7,19 +7,24 @@ export default function makeServer() {
 
     models: {
       user: Model,
-      message: Model
+
+      message: Model.extend({
+        user: belongsTo()
+      })
     },
 
     seeds(server) {
-      server.create("user", { name: "Sam" });
-      server.create("user", { name: "Ryan" });
+      let sam = server.create("user", { name: "Sam" });
+      let ryan = server.create("user", { name: "Ryan" });
 
-      server.create("message", { text: "hey!" });
-      server.create("message", { text: "hey man" });
+      server.create("message", { user: ryan, text: "hey!" });
+      server.create("message", { user: sam, text: "hey man" });
       server.create("message", {
+        user: ryan,
         text: "hows #coronaconf2020 going?"
       });
       server.create("message", {
+        user: sam,
         text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
     },

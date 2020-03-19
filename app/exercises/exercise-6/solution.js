@@ -1,5 +1,5 @@
-// Exercise 6 solution: One to many
-import { Server, Model, RestSerializer, hasMany, belongsTo } from "miragejs";
+// Exercise 6 solution: Has many association
+import { Server, Model, RestSerializer, hasMany } from "miragejs";
 
 export default function makeServer() {
   return new Server({
@@ -9,23 +9,19 @@ export default function makeServer() {
       user: Model.extend({
         messages: hasMany()
       }),
-      message: Model.extend({
-        user: belongsTo()
-      })
+      message: Model
     },
 
     seeds(server) {
       let sam = server.create("user", { name: "Sam" });
       let ryan = server.create("user", { name: "Ryan" });
 
-      server.create("message", { user: sam, text: "hey!" });
-      server.create("message", { user: ryan, text: "hey man" });
-      server.create("message", {
-        user: sam,
+      sam.createMessage({ text: "hey!" });
+      ryan.createMessage({ text: "hey man" });
+      sam.createMessage({
         text: "hows #coronaconf2020 going?"
       });
-      server.create("message", {
-        user: ryan,
+      ryan.createMessage({
         text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
     },

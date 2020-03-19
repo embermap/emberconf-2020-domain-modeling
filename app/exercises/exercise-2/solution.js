@@ -14,7 +14,7 @@ export default function makeServer() {
     },
 
     routes() {
-      this.resource("users");
+      this.resource("user");
     }
   });
 }

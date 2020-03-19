@@ -1,5 +1,5 @@
-// Exercise 7: Fetching a graph, server driven
-import { Server, Model, RestSerializer, belongsTo, hasMany } from "miragejs";
+// Exercise 7: One to many
+import { Server, Model, RestSerializer } from "miragejs";
 
 export default function makeServer() {
   return new Server({
@@ -7,25 +7,24 @@ export default function makeServer() {
 
     models: {
       user: Model.extend({
-        messages: hasMany()
+        //
       }),
-
       message: Model.extend({
-        user: belongsTo()
+        //
       })
     },
 
     seeds(server) {
-      let sam = server.create("user", { name: "Sam" });
-      let ryan = server.create("user", { name: "Ryan" });
+      server.create("user", { name: "Sam" });
+      server.create("user", { name: "Ryan" });
 
-      ryan.createMessage({ text: "hey!" });
-      sam.createMessage({ text: "hey man" });
-      ryan.createMessage({
+      server.create("message", { text: "hey!" });
+      server.create("message", { text: "hey man" });
+      server.create("message", {
         text: "hows #coronaconf2020 going?"
       });
-      sam.createMessage({
-        text: " managed to buy groceries but somehow all I'm eating is candy"
+      server.create("message", {
+        text: "I managed to buy groceries but somehow all I'm eating is candy"
       });
     },
 

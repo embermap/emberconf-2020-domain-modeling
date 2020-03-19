@@ -1,4 +1,4 @@
-// Exercise 6: One to many
+// Exercise 6: Has many association
 import { Server, Model, RestSerializer } from "miragejs";
 
 export default function makeServer() {
@@ -6,12 +6,8 @@ export default function makeServer() {
     serializers: { application: RestSerializer },
 
     models: {
-      user: Model.extend({
-        //
-      }),
-      message: Model.extend({
-        //
-      })
+      user: Model,
+      message: Model
     },
 
     seeds(server) {

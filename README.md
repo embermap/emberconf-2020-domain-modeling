@@ -30,7 +30,21 @@ Resources vs. database records.
 
 [ Replace the 5 routes with the resource shorthand ]
 
-## Exercise 3: Belongs to association
+## Exercise 3: Practice creating a model
+
+Let's add another model, called a Message.
+
+Messages look like
+
+```js
+let message = {
+  text: "hello emberconf!"
+};
+```
+
+Define a Message model and create some messages in `seeds`. Add a resource to routes. Explore them in the database tab and make requests to them from the client.
+
+## Exercise 4: Belongs to association
 
 Where should we store message data?
 
@@ -42,7 +56,7 @@ How can we associate these two things? Using a _foreign key_.
 
 Mirage's ORM helps manage foreign keys for us, just like most backend systems.
 
-## Exercise 4: Practice creating a belongs to association
+## Exercise 5: Practice creating a belongs to association
 
 Users can also have activities.
 
@@ -57,11 +71,11 @@ let activity = {
 };
 ```
 
-[ E: Create activity ]
+[ **Exercise:** Create activity ]
 
 Try deleting a user! What happens to the associated messages and activites?
 
-## Exercise 5: Has many association
+## Exercise 6: Has many association
 
 The other association type is a Has Many.
 
@@ -71,7 +85,7 @@ Instead of associating the user with the message, we can associate the messages 
 
 [ Add user.messages hasMany association ]
 
-## Exercise 6: One to many association
+## Exercise 7: One to many association
 
 So far we've seen one-way relationships. Mirage (and most backend systems) support two-way relationships, or relationships that have an _inverse_.
 
@@ -81,7 +95,7 @@ Let's make user and messages a one-to-many relationship.
 
 Notice how Mirage keeps the fks in sync, regardless of which side you edit.
 
-## Exercise 7: Fetching a graph, server driven
+## Exercise 8: Fetching a graph, server driven
 
 Alright - now that we have our data modeled in our database, it's time to fetch it. But how can our client best fetch it?
 
@@ -103,11 +117,13 @@ This data is **denormalized**. You can see duplicated information when compared 
 
 You might hear this referred to as a **materialized view** of the database.
 
-## Exercise 6: Practice with includes
+## Exercise 9: Practice with includes and embed
 
-Now, let's say we wanted to build a screen for a user, and show their recent messages. How might we get the data?
+Now, let's say we wanted to build a screen for a single user, and show them all their messages. How might we get the data? What would the query be?
 
 [ **Exercise:** Fetch the user and their messages ]
+
+Did you go with embedded or sideloaded? Was there data duplication?
 
 ---
 
