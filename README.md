@@ -192,3 +192,4 @@ Data modeling is complex and there are definitely situations where experienced d
 - [DHH talk Resources on Rails](https://www.youtube.com/watch?v=GFhoSMD6idk)
 - [The Back-end for Front-end Pattern (BFF)](https://philcalcado.com/2015/09/18/the_back_end_for_front_end_pattern_bff.html)
 - [Pattern: Backends for Frontends](https://samnewman.io/patterns/architectural/bff/)
+- [Turning the database inside out](https://www.youtube.com/watch?v=fU9hR3kiOK0)
