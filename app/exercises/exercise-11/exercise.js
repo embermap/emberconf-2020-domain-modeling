@@ -1,4 +1,4 @@
-// Exercise 10: Fetching a graph, client-side with GraphQL
+// Exercise 11: Fetching a graph, client-side with GraphQL
 import { Server, Model, belongsTo, hasMany } from "miragejs";
 import { buildSchema, graphql } from "graphql";
 
