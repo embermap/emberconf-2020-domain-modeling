@@ -1,5 +1,16 @@
 # EmberConf 2020: Domain Modeling with Mirage JS
 
+## Setup
+
+From a directory,
+
+```sh
+git clone git@github.com:embermap/emberconf-2020-domain-modeling.git
+cd emberconf-2020-domain-modeling
+yarn install
+ember s
+```
+
 ## Intro
 
 In most web apps, the database is the source of truth.
