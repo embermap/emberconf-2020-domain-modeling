@@ -4,7 +4,7 @@ Welcome!
 
 You can view the training on YouTube:
 
-youtube.com
+[View the training on YouTube](https://www.youtube.com/watch?v=lfDBb0Ar-rc)
 
 Follow along using the instruactions below.
 
