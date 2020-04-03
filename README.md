@@ -6,7 +6,7 @@ You can view the training on YouTube:
 
 [→ View the training on YouTube](https://www.youtube.com/watch?v=lfDBb0Ar-rc)
 
-Follow along using the instruactions below.
+Follow along using the instructions below.
 
 ## Getting help
 
